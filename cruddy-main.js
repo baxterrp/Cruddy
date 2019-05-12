@@ -23,17 +23,7 @@ module.exports = {
         
         sql += ';';
 
-        try{
-            GetConnection(function(connection){
-                connection.query(sql, function(exception, results){
-                    connection.end();
-                    callback(CreateSqlResponse(exception 
-                        ? false : true, exception, results));
-                });
-            });
-        }catch(exception){
-            callback(CreateSqlResponse(false, exception));
-        }
+        ExecuteQuery(sql, callback);
     },
     Insert : function(table, values, columns, callback){
         var valueArray = [];
@@ -43,16 +33,8 @@ module.exports = {
 
         var sql = `${sqlConstants.Insert} ${sqlConstants.Into} ${table} (${columns.join(',')}) ${sqlConstants.Values} (${valueArray.join(',')});`;
         sql = mysql.format(sql, values);
-        try{
-            GetConnection(function(connection){
-                connection.query(sql, function(exception){
-                    connection.end();
-                    callback(CreateSqlResponse(!exception, exception));
-                });
-            });
-        }catch(exception){
-            callback(false, exception);
-        }
+
+        ExecuteQuery(sql, callback);
     },
     Delete : function(table, constraints, callback){
         var sql = `${sqlConstants.Delete} ${sqlConstants.From} ${table} ${sqlConstants.Where}`;
@@ -69,16 +51,7 @@ module.exports = {
             sql = mysql.format(sql, values);
         }
 
-        try{
-            GetConnection(function(connection){
-                connection.query(sql, function(exception){
-                    connection.end();
-                    callback(CreateSqlResponse(!exception, exception));
-                });
-            });
-        }catch(exception){
-            callback(false, exception);
-        }
+        ExecuteQuery(sql, callback);
     },
     Update : function(table, sets, constraints, callback){
         var sql = `${sqlConstants.Update} ${table} ${sqlConstants.Set}`;
@@ -104,16 +77,21 @@ module.exports = {
         }
 
         sql = mysql.format(sql, values);
-        try{
-            GetConnection(function(connection){
-                connection.query(sql, function(exception){
-                    connection.end();
-                    callback(CreateSqlResponse(!exception, exception));
-                });
+        
+        ExecuteQuery(sql, callback);
+    }
+}
+
+function ExecuteQuery(sql, callback){
+    try{
+        GetConnection(function(connection){
+            connection.query(sql, function(exception, results){
+                connection.end();
+                callback(CreateSqlResponse(!exception, exception, results));
             });
-        }catch(exception){
-            callback(false, exception);
-        }
+        });
+    }catch(exception){
+        callback(false, exception);
     }
 }
 
