@@ -1,0 +1,19 @@
+{
+  "name": "@npm/cruddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cruddy-main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baxterrp/Cruddy.git"
+  },
+  "author": "Robert Baxter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baxterrp/Cruddy/issues"
+  },
+  "homepage": "https://github.com/baxterrp/Cruddy#readme"
+}
