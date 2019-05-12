@@ -1,7 +1,7 @@
 var mysql = require('mysql'),
     utility = require('./cruddy-utility'),
     sqlConstants = require('./cruddy-constants'),
-    env = require('../environment.json');
+    env = require('../../environment.json');
 
 module.exports = {
     Select : function(table, values, constraints, callback){

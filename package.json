@@ -1,6 +1,6 @@
 {
-  "name": "@npm/cruddy",
-  "version": "1.0.0",
+  "name": "cruddy-orm",
+  "version": "1.0.1",
   "description": "",
   "main": "cruddy-main.js",
   "scripts": {
@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/baxterrp/Cruddy.git"
   },
-  "author": "Robert Baxter",
+  "author": "Robert.Baxter",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/baxterrp/Cruddy/issues"
   },
-  "homepage": "https://github.com/baxterrp/Cruddy#readme"
+  "homepage": "https://github.com/baxterrp/Cruddy#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
 }
